@@ -1,0 +1,16 @@
+{
+  "eth": {
+    "rpcUrl": "https://mainnet.infura.io/v3/********************************",
+    "tokenAddress": "0x06A01a4d579479Dd5D884EBf61A31727A3d8D442"
+  },
+  "wvs": {
+    "nodeUrl": "https://master.nodes.skey.network",
+    "blacklist": ["3KN8NoSsFXrs9pNhFfEQupje7aMxRXJtikm"],
+    "labels": [
+      { "name": "master_node", "address": "3K5xURMkm9sh3aQhkWC1MbsZNfiEPvsg5LD" },
+      { "name": "network", "address": "3KMBki9ys6PMHUioQ3dAebG67PgVZqhpn2N" },
+      { "name": "dapp_father", "address": "3KN8NoSsFXrs9pNhFfEQupje7aMxRXJtikm" },
+      { "name": "bridge", "address": "3KJsASaS58Wzobo2WnxkxpXa6GwoEm7uPYB" }
+    ]
+  }
+}
