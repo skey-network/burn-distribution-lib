@@ -37,26 +37,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.App = void 0;
+var ChartService_1 = require("./ChartService");
 var EthService_1 = require("./EthService");
 var WvsService_1 = require("./WvsService");
 var App = /** @class */ (function () {
     function App(options) {
         this.eth = new EthService_1.EthService(options.eth);
         this.wvs = new WvsService_1.WvsService(options.wvs);
+        this.chart = new ChartService_1.ChartService();
     }
     App.prototype.calculate = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = {};
-                        return [4 /*yield*/, this.eth.getBurnRatio()];
+            var eth, wvs, chart;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.eth.getBurnRatio()];
                     case 1:
-                        _a.eth = _b.sent();
+                        eth = _a.sent();
                         return [4 /*yield*/, this.wvs.getBurnRatio()];
-                    case 2: return [2 /*return*/, (_a.wvs = _b.sent(),
-                            _a)];
+                    case 2:
+                        wvs = _a.sent();
+                        chart = this.chart.calculateChartData(eth, wvs);
+                        return [2 /*return*/, { eth: eth, wvs: wvs, chart: chart }];
                 }
             });
         });

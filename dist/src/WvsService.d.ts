@@ -21,6 +21,7 @@ export interface WvsOutput {
     genesis: number;
     current: number;
     spent: number;
+    feeSpent: number;
     accounts: Account[];
 }
 export declare class WvsService {

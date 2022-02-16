@@ -27,6 +27,7 @@ export interface WvsOutput {
   genesis: number
   current: number
   spent: number
+  feeSpent: number
   accounts: Account[]
 }
 
@@ -78,12 +79,14 @@ export class WvsService {
   async getBurnRatio(): Promise<WvsOutput> {
     const accounts = await this.getAccounts()
     const whitelisted = accounts.filter((acc) => !acc.blacklisted)
+    const blacklisted = accounts.filter((acc) => acc.blacklisted)
 
     const genesis = this.sumValues(accounts, 'genesis')
     const current = this.sumValues(accounts, 'current')
     const spent = this.sumValues(whitelisted, 'spent')
+    const feeSpent = this.sumValues(blacklisted, 'spent')
 
-    return { genesis, current, spent, accounts }
+    return { genesis, current, spent, feeSpent, accounts }
   }
 
   private getLabel(address: string) {

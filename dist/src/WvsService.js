@@ -119,17 +119,19 @@ var WvsService = /** @class */ (function () {
     };
     WvsService.prototype.getBurnRatio = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var accounts, whitelisted, genesis, current, spent;
+            var accounts, whitelisted, blacklisted, genesis, current, spent, feeSpent;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.getAccounts()];
                     case 1:
                         accounts = _a.sent();
                         whitelisted = accounts.filter(function (acc) { return !acc.blacklisted; });
+                        blacklisted = accounts.filter(function (acc) { return acc.blacklisted; });
                         genesis = this.sumValues(accounts, 'genesis');
                         current = this.sumValues(accounts, 'current');
                         spent = this.sumValues(whitelisted, 'spent');
-                        return [2 /*return*/, { genesis: genesis, current: current, spent: spent, accounts: accounts }];
+                        feeSpent = this.sumValues(blacklisted, 'spent');
+                        return [2 /*return*/, { genesis: genesis, current: current, spent: spent, feeSpent: feeSpent, accounts: accounts }];
                 }
             });
         });

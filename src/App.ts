@@ -1,3 +1,4 @@
+import { ChartOutput, ChartService } from './ChartService'
 import { EthOptions, EthOutput, EthService } from './EthService'
 import { WvsOptions, WvsOutput, WvsService } from './WvsService'
 
@@ -9,22 +10,26 @@ export interface AppOptions {
 export interface Output {
   eth: EthOutput
   wvs: WvsOutput
+  chart: ChartOutput
 }
 
 export class App {
   private eth: EthService
   private wvs: WvsService
+  private chart: ChartService
 
   constructor(options: AppOptions) {
     this.eth = new EthService(options.eth)
     this.wvs = new WvsService(options.wvs)
+    this.chart = new ChartService()
   }
 
   async calculate(): Promise<Output> {
-    return {
-      eth: await this.eth.getBurnRatio(),
-      wvs: await this.wvs.getBurnRatio()
-    }
+    const eth = await this.eth.getBurnRatio()
+    const wvs = await this.wvs.getBurnRatio()
+    const chart = this.chart.calculateChartData(eth, wvs)
+
+    return { eth, wvs, chart }
   }
 
   stringify(obj: Output, pretty: boolean) {

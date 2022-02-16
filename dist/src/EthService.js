@@ -79,11 +79,9 @@ var EthService = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         excluded = (_a = this.options.excluded) !== null && _a !== void 0 ? _a : [];
-                        console.log(1, excluded);
                         return [4 /*yield*/, Promise.all(excluded.map(function (address) { return _this.token.balanceOf(address); }))];
                     case 1:
                         balances = _b.sent();
-                        console.log(2, balances);
                         return [2 /*return*/, balances.reduce(function (acc, curr) { return acc.add(curr); }, ethers_1.BigNumber.from(0))];
                 }
             });
