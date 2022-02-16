@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import NodeFetch from 'node-fetch'
 import { IBlock } from '@waves/node-api-js/cjs/api-node/blocks'
 import { GenesisTransaction } from '@waves/ts-types'
 import { IBalanceDetails } from '@waves/node-api-js/cjs/api-node/addresses'
@@ -93,7 +93,13 @@ export class WvsService {
   }
 
   private async request<T = any>(path: string) {
-    const res = await fetch(this.options.nodeUrl + path)
+    const res = await this.fetch(this.options.nodeUrl + path)
     return (await res.json()) as T
+  }
+
+  private get fetch() {
+    if (globalThis.fetch) return globalThis.fetch.bind(globalThis)
+
+    return NodeFetch
   }
 }

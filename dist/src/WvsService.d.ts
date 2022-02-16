@@ -34,4 +34,5 @@ export declare class WvsService {
     getBurnRatio(): Promise<WvsOutput>;
     private getLabel;
     private request;
+    private get fetch();
 }

@@ -19,3 +19,5 @@ export const calculateRatio = async (options: CalcOptions) => {
   const app = new App(options)
   return await app.calculate()
 }
+
+export * from './defaults'
