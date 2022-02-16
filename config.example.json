@@ -1,7 +1,8 @@
 {
   "eth": {
     "rpcUrl": "https://mainnet.infura.io/v3/********************************",
-    "tokenAddress": "0x06A01a4d579479Dd5D884EBf61A31727A3d8D442"
+    "tokenAddress": "0x06A01a4d579479Dd5D884EBf61A31727A3d8D442",
+    "excluded": ["0xcdc41c48b4685102c4e6c9de50b6e9367429e7a6", "0x4aaFc082e213292D4fDC50A8F3bD3aC55DEBf4c2"]
   },
   "wvs": {
     "nodeUrl": "https://master.nodes.skey.network",

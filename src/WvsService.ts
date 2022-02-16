@@ -77,12 +77,11 @@ export class WvsService {
 
   async getBurnRatio(): Promise<WvsOutput> {
     const accounts = await this.getAccounts()
+    const whitelisted = accounts.filter((acc) => !acc.blacklisted)
+
     const genesis = this.sumValues(accounts, 'genesis')
     const current = this.sumValues(accounts, 'current')
-    const spent = this.sumValues(
-      accounts.filter((acc) => !acc.blacklisted),
-      'spent'
-    )
+    const spent = this.sumValues(whitelisted, 'spent')
 
     return { genesis, current, spent, accounts }
   }
